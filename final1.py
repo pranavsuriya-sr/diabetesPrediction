@@ -76,7 +76,7 @@ def main():
     st.write(f"Based on the input (")
     for key, value in numbers.items():
         st.write(f"{key}: {value},")
-    st.write(f"), the prediction using {best_model_name} model is: {'Diabetes' if prediction == 1 else 'No Diabetes'}")
+    st.write(f"), the prediction using {best_model_name} model is: {'Diabetes' if prediction > 0.5 else 'No Diabetes'}")
 
 
     st.table(pd.DataFrame(list(accuracies.items()), columns=['Model', 'Accuracy']))
