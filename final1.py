@@ -5,7 +5,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix, mean_squared_error, r2_score, precision_score, recall_score, f1_score, accuracy_score
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 st.set_page_config(layout="wide")
 
@@ -61,7 +63,6 @@ def main():
         accuracy = model.score(X_test, y_test)  # Calculate accuracy on the test set
         accuracies[model_name] = accuracy
 
-
     # Finding the model with the highest accuracy
     best_model_name = max(accuracies, key=accuracies.get)
     best_model = models[best_model_name]
@@ -78,9 +79,30 @@ def main():
         st.write(f"{key}: {value},")
     st.write(f"), the prediction using {best_model_name} model is: {'Diabetes' if prediction > 0.5 else 'No Diabetes'}")
 
+    if best_model_name == "Linear Regression":
+        best_model.fit(X_train, y_train)
+        y_pred = best_model.predict(X_test)
+        mse = mean_squared_error(y_test, y_pred)
+        r2 = r2_score(y_test, y_pred)
+        st.write(f"Mean Squared Error for {model_name} model: {mse}")
+        st.write(f"R^2 Score for {model_name} model: {r2}")
+
+    else:    
+        best_model.fit(X_train, y_train)
+        y_pred = best_model.predict(X_test)
+        st.write(f"Confusion Matrix for {best_model_name} model:")
+        cm = confusion_matrix(y_test, best_model.predict(X_test))
+        st.write(pd.DataFrame(cm, columns=['Predicted 0', 'Predicted 1'], index=['Actual 0', 'Actual 1']))
+        precision = precision_score(y_test, y_pred)
+        recall = recall_score(y_test, y_pred)
+        f1 = f1_score(y_test, y_pred)
+
+        st.write(f"Precision for {model_name} model: {precision}")
+        st.write(f"Recall for {model_name} model: {recall}")
+        st.write(f"F1 Score for {model_name} model: {f1}")
+        st.write(f"Accuracy for {model_name} model: {accuracy}")
 
     st.table(pd.DataFrame(list(accuracies.items()), columns=['Model', 'Accuracy']))
-
 
 if __name__ == "__main__":
     main()
@@ -88,15 +110,15 @@ if __name__ == "__main__":
 # Copyright text at the bottom
 st.sidebar.markdown(
     '<div style="text-align:center; margin-top: 370px">'
-    '<a href = "https://pranavsuriya-sr.github.io/personalPortfolio/" style = "text-decoration: none;" ><p style="font-size: 10px;">PS Devs © 2023 Project Hack Community.</a></p>'
+    '<a href="https://pranavsuriya-sr.github.io/personalPortfolio/" style="text-decoration: none;" ><p style="font-size: 10px;">PS Devs © 2023 Project Hack Community.</a></p>'
     '<p style="font-size: 10px;">Open Source rights reserved.</p>'
     '</div>',
     unsafe_allow_html=True
 )
 st.markdown(
-        '<div style="text-align:center; margin-top: 42px">'
-        '<a href = "https://pranavsuriya-sr.github.io/personalPortfolio/" style = "text-decoration: none;" ><p style="font-size: 10px;">PS Devs © 2023 Project Hack Community.</a></p>'
-        '<p style="font-size: 10px;">Open Source rights reserved.</p>'
-        '</div>',
-        unsafe_allow_html=True
-    )
+    '<div style="text-align:center; margin-top: 42px">'
+    '<a href="https://pranavsuriya-sr.github.io/personalPortfolio/" style="text-decoration: none;" ><p style="font-size: 10px;">PS Devs © 2023 Project Hack Community.</a></p>'
+    '<p style="font-size: 10px;">Open Source rights reserved.</p>'
+    '</div>',
+    unsafe_allow_html=True
+)
