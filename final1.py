@@ -97,10 +97,10 @@ def main():
         recall = recall_score(y_test, y_pred)
         f1 = f1_score(y_test, y_pred)
 
-        st.write(f"Precision for {model_name} model: {precision}")
-        st.write(f"Recall for {model_name} model: {recall}")
-        st.write(f"F1 Score for {model_name} model: {f1}")
-        st.write(f"Accuracy for {model_name} model: {accuracy}")
+        st.write(f"Precision for {best_model_name} model: {precision}")
+        st.write(f"Recall for {best_model_name} model: {recall}")
+        st.write(f"F1 Score for {best_model_name} model: {f1}")
+        st.write(f"Accuracy for {best_model_name} model: {accuracies[best_model_name]}")
 
     st.table(pd.DataFrame(list(accuracies.items()), columns=['Model', 'Accuracy']))
 
