@@ -110,14 +110,14 @@ if __name__ == "__main__":
 # Copyright text at the bottom
 st.sidebar.markdown(
     '<div style="text-align:center; margin-top: 370px">'
-    '<a href="https://pranavsuriya-sr.github.io/personalPortfolio/" style="text-decoration: none;" ><p style="font-size: 10px;">PS Devs © 2023 Project Hack Community.</a></p>'
+    '<a href="https://pranavsuriya.netlify.app/" style="text-decoration: none;" ><p style="font-size: 10px;">PS Devs © 2023 Project Hack Community.</a></p>'
     '<p style="font-size: 10px;">Open Source rights reserved.</p>'
     '</div>',
     unsafe_allow_html=True
 )
 st.markdown(
     '<div style="text-align:center; margin-top: 42px">'
-    '<a href="https://pranavsuriya-sr.github.io/personalPortfolio/" style="text-decoration: none;" ><p style="font-size: 10px;">PS Devs © 2023 Project Hack Community.</a></p>'
+    '<a href="https://pranavsuriya.netlify.app/" style="text-decoration: none;" ><p style="font-size: 10px;">PS Devs © 2023 Project Hack Community.</a></p>'
     '<p style="font-size: 10px;">Open Source rights reserved.</p>'
     '</div>',
     unsafe_allow_html=True
