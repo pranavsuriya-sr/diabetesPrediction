@@ -14,9 +14,9 @@ st.set_page_config(layout="wide")
 def main():
     st.markdown("# Diabetes Predictor App")
     st.markdown("This predictor utilizes advanced algorithms to assess your risk of developing diabetes based on your input and known risk factors.")
-
+    st.markdown("Note: Select more parameters from the sidebar to get more accurate results.")
     st.sidebar.markdown("### Parameter Selection: ")
-    selected_option = st.sidebar.selectbox('Select the number of parameters you know: ', ('1', '2', '3', '4', '5', '6', '7', '8'))
+    selected_option = st.sidebar.selectbox('Select the number of parameters you know: ', ('1', '2', '3', '4', '5', '6', '7', '8'), index=3)
 
     feature_names = {
         'Pregnancies': 'Pregnancies',
@@ -29,7 +29,7 @@ def main():
         'Age': 'Age'
     }
 
-    selected_features = [st.sidebar.selectbox(f'Select parameter {i}:', list(feature_names.values())) for i in range(1, int(selected_option) + 1)]
+    selected_features = [st.sidebar.selectbox(f'Select parameter {i}:', list(feature_names.values()), index=i-1) for i in range(1, int(selected_option) + 1)]
 
     numbers = {}
     for i, value in enumerate(selected_features, start=1):
